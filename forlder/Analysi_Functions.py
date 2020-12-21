@@ -18,7 +18,7 @@ import warnings
 import spacy
 import pickle
 import streamlit as st
-
+nlp_md = spacy.load('en_core_web_md')
 
 # load book , clean data and split into sentences 
 def Load_book(path):
@@ -54,7 +54,6 @@ def Load_book(path):
 
 # run emotions dedection on each sentence 
 def Analyzse_Emotions(sentences):
-  token = RegexpTokenizer(r'[a-zA-Z0-9]+')
   cv = pickle.load(open(r'vectorizer.pickle', 'rb'))
   df_emotions = pd.DataFrame((np.zeros((1,int(len(sentences))))))
   model = pickle.load(open(r"emotions_detector.sav", 'rb'))
